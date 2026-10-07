@@ -74,3 +74,48 @@ const recetas = [
 ];
 
 console.table(recetas);
+
+// Reto 3
+// Tiempo máximo para considerar que una receta es rápida
+const TIEMPO_RAPIDO = 30;
+
+// Mostramos el título del primer listado
+console.log("--- Todas las recetas ---");
+
+// Recorremos todas las recetas
+for (const receta of recetas) {
+
+    // Si tarda 30 minutos o menos, es rápida.
+    // Si tarda más, es elaborada.
+    const etiqueta = receta.tiempo <= TIEMPO_RAPIDO ? "rápida" : "elaborada";
+
+    // Mostramos el id, el nombre y la etiqueta de cada receta
+    console.log(`${receta.id}. ${receta.nombre} - ${etiqueta}`);
+}
+
+// Mostramos el título del segundo listado
+console.log("--- Recetas que cumplen el filtro ---");
+
+// Contador de recetas que cumplen la condición
+let encontradas = 0;
+
+// Recorremos las recetas usando un for clásico
+for (let i = 0; i < recetas.length; i++) {
+
+    // Guardamos la receta que estamos recorriendo
+    const receta = recetas[i];
+
+    // Comprobamos las condiciones:
+    // que sea fácil Y rápida, O que tenga 6 o más raciones
+    if ((receta.dificultad === "Fácil" && receta.tiempo <= TIEMPO_RAPIDO) || receta.raciones >= 6) {
+
+        // Mostramos la receta que cumple la condición
+        console.log(`${receta.id}. ${receta.nombre}`);
+
+        // Aumentamos el contador
+        encontradas++;
+    }
+}
+
+// Mostramos cuántas recetas cumplen la condición
+console.log(`${encontradas} de ${recetas.length} cumplen la condición`);
