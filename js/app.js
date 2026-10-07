@@ -94,7 +94,7 @@ for (const receta of recetas) {
 }
 
 // Mostramos el título del segundo listado
-console.log("--- Recetas que cumplen el filtro ---");
+console.log("--- Recetas rápidas y fáciles ---");
 
 // Contador de recetas que cumplen la condición
 let encontradas = 0;
