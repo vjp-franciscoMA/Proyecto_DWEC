@@ -73,5 +73,4 @@ const recetas = [
     }
 ];
 
-
 console.table(recetas);
