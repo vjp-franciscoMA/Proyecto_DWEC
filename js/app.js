@@ -90,10 +90,11 @@ function listarTodas(recetas) {
     // Recorremos todas las recetas
     for (const receta of recetas) {
 
-        // Comprobamos si la receta es rápida o elaborada
+        // Si tarda 30 minutos o menos, es rápida
+        // Si tarda más de 30 minutos, es elaborada
         const etiqueta = receta.tiempo <= TIEMPO_RAPIDO ? "rápida" : "elaborada";
-
-        // Mostramos el id, el nombre y la etiqueta
+        
+        // Mostramos el id, nombre y etiqueta
         console.log(`${receta.id}. ${receta.nombre} - ${etiqueta}`);
     }
 }
@@ -102,30 +103,30 @@ function listarTodas(recetas) {
 // 2. Función para filtrar recetas
 function filtrar(recetas, limite) {
 
-    // Contador de recetas que cumplen la condición
+    // Contador de recetas encontradas
     let encontradas = 0;
 
     console.log(`--- Recetas fáciles y de ${limite} minutos o menos ---`);
 
-    // Recorremos las recetas con un for clásico
+    // Recorremos todas las recetas
     for (let i = 0; i < recetas.length; i++) {
 
         // Guardamos la receta actual
         const receta = recetas[i];
 
-        // Comprobamos que sea fácil Y que tarde menos o igual que el límite
-        // O que tenga 6 o más raciones
-        if ((receta.dificultad === "Fácil" && receta.tiempo <= limite) || receta.raciones >= 6) {
+        // Comprobamos que sea fácil y que tarde como máximo
+        // el número de minutos indicado en limite
+        if (receta.dificultad === "Fácil" && receta.tiempo <= limite) {
 
             // Mostramos la receta
             console.log(`${receta.id}. ${receta.nombre}`);
 
-            // Aumentamos el contador
+            // Sumamos 1 al contador
             encontradas++;
         }
     }
 
-    // Devolvemos el número de recetas encontradas
+    // Devolvemos cuántas recetas hemos encontrado
     return encontradas;
 }
 
@@ -133,27 +134,60 @@ function filtrar(recetas, limite) {
 // 3. Función para contar recetas por categoría
 function contarPorCategoria(recetas) {
 
-    console.log("--- Recetas por categoría ---");
-
-    // Guardamos cuántas recetas hay de cada categoría
-    const categorias = {};
+    // Contadores para cada categoría
+    let platoPrincipal = 0;
+    let pasta = 0;
+    let arroz = 0;
+    let entrante = 0;
+    let ensalada = 0;
+    let carne = 0;
+    let postre = 0;
 
     // Recorremos todas las recetas
     for (const receta of recetas) {
 
-        // Si la categoría no existe todavía, la ponemos a 0
-        if (categorias[receta.categoria] === undefined) {
-            categorias[receta.categoria] = 0;
+        // Comprobamos la categoría de la receta
+        switch (receta.categoria) {
+
+            case "Plato principal":
+                platoPrincipal++;
+                break;
+
+            case "Pasta":
+                pasta++;
+                break;
+
+            case "Arroz":
+                arroz++;
+                break;
+
+            case "Entrante":
+                entrante++;
+                break;
+
+            case "Ensalada":
+                ensalada++;
+                break;
+
+            case "Carne":
+                carne++;
+                break;
+
+            case "Postre":
+                postre++;
+                break;
         }
-
-        // Sumamos una receta a esa categoría
-        categorias[receta.categoria]++;
     }
 
-    // Mostramos las categorías y sus cantidades
-    for (const categoria in categorias) {
-        console.log(`${categoria}: ${categorias[categoria]}`);
-    }
+    // Mostramos el resultado
+    console.log("--- Recetas por categoría ---");
+    console.log(`Plato principal: ${platoPrincipal}`);
+    console.log(`Pasta: ${pasta}`);
+    console.log(`Arroz: ${arroz}`);
+    console.log(`Entrante: ${entrante}`);
+    console.log(`Ensalada: ${ensalada}`);
+    console.log(`Carne: ${carne}`);
+    console.log(`Postre: ${postre}`);
 }
 
 
@@ -161,13 +195,13 @@ function contarPorCategoria(recetas) {
 
 listarTodas(recetas);
 
-// Llamamos a filtrar con un límite de 30
+// Filtramos recetas con un límite de 30 minutos
 const resultado30 = filtrar(recetas, 30);
 console.log(`Encontradas: ${resultado30}`);
 
-// Llamamos a filtrar otra vez con un límite de 45
+// Filtramos recetas con un límite de 45 minutos
 const resultado45 = filtrar(recetas, 45);
 console.log(`Encontradas: ${resultado45}`);
 
-// Contamos las recetas por categoría
+// Contamos las recetas de cada categoría
 contarPorCategoria(recetas);
