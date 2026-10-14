@@ -274,3 +274,24 @@ function anadir(lista, elemento) {
     // Devolvemos el ID asignado
     return elemento.id;
 }
+
+// 4. Función para eliminar una receta por su ID
+function eliminarPorId(lista, id) {
+
+    // Recorremos la lista con un for clásico
+    for (let i = 0; i < lista.length; i++) {
+
+        // Comprobamos si el ID coincide
+        if (lista[i].id === id) {
+
+            // Eliminamos una receta de esa posición
+            lista.splice(i, 1);
+
+            // Devolvemos true porque se ha eliminado
+            return true;
+        }
+    }
+
+    // Devolvemos false si no encontramos el ID
+    return false;
+}
