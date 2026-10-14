@@ -249,3 +249,28 @@ function buscarPorTexto(lista, texto) {
     // Devolvemos las recetas encontradas
     return resultado;
 }
+
+// 3. Función para añadir una receta
+function anadir(lista, elemento) {
+
+    // Guardamos el ID más alto encontrado
+    let mayorId = 0;
+
+    // Recorremos las recetas
+    for (const receta of lista) {
+
+        // Si encontramos un ID mayor, lo guardamos
+        if (receta.id > mayorId) {
+            mayorId = receta.id;
+        }
+    }
+
+    // Asignamos el siguiente ID al nuevo elemento
+    elemento.id = mayorId + 1;
+
+    // Añadimos la receta al final de la lista
+    lista.push(elemento);
+
+    // Devolvemos el ID asignado
+    return elemento.id;
+}
