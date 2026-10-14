@@ -305,7 +305,7 @@ listar(recetas);
 // Función 2
 // Buscamos recetas cuyo nombre contenga "arroz"
 console.log("--- Buscar recetas con arroz ---");
-console.table(buscarPorTexto(recetas, "tortilla"));
+console.table(buscarPorTexto(recetas, "arroz"));
 
 // Función 3
 // Añadimos una receta de prueba
