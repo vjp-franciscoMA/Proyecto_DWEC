@@ -295,3 +295,38 @@ function eliminarPorId(lista, id) {
     // Devolvemos false si no encontramos el ID
     return false;
 }
+
+// PRUEBAS DE LAS FUNCIONES NUEVAS
+
+// Función 1
+// Probamos el listado
+listar(recetas);
+
+// Función 2
+// Buscamos recetas cuyo nombre contenga "arroz"
+console.log("--- Buscar recetas con arroz ---");
+console.table(buscarPorTexto(recetas, "tortilla"));
+
+// Función 3
+// Añadimos una receta de prueba
+const nuevoId = anadir(recetas, {
+    nombre: "Flan casero",
+    categoria: "Postre",
+    tiempo: 35,
+    dificultad: "Fácil",
+    raciones: 4,
+    fechaUltimaVez: "14/10/2026"
+});
+
+console.log("ID de la nueva receta:", nuevoId);
+
+// Función 4
+// Probamos a eliminar la receta con ID 3
+console.log("Eliminar receta 3:", eliminarPorId(recetas, 3));
+
+// Probamos a eliminar un ID que no existe
+console.log("Eliminar receta 99:", eliminarPorId(recetas, 99));
+
+// Mostramos la lista después de añadir y eliminar
+console.log("--- Recetas después de los cambios ---");
+listar(recetas);
