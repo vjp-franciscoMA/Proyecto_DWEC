@@ -205,3 +205,20 @@ console.log(`Encontradas: ${resultado45}`);
 
 // Contamos las recetas de cada categoría
 contarPorCategoria(recetas);
+
+
+
+// RETO 2: LAS FUNCIONES DE NUESTRO PROYECTO
+
+// 1. Función para listar las recetas
+function listar(lista) {
+
+    console.log("--- Listado de recetas ---");
+
+    // Recorremos la lista recibida
+    for (const receta of lista) {
+
+        // Mostramos los datos principales
+        console.log(`${receta.id}. ${receta.nombre} - ${receta.categoria} - ${receta.tiempo} min`);
+    }
+} 
