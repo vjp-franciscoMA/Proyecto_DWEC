@@ -221,4 +221,31 @@ function listar(lista) {
         // Mostramos los datos principales
         console.log(`${receta.id}. ${receta.nombre} - ${receta.categoria} - ${receta.tiempo} min`);
     }
-} 
+}
+
+// 2. Función para buscar recetas por texto
+function buscarPorTexto(lista, texto) {
+
+    // Convertimos el texto buscado a minúsculas
+    const buscado = texto.toLowerCase();
+
+    // Array donde guardaremos las recetas encontradas
+    const resultado = [];
+
+    // Recorremos todas las recetas
+    for (const receta of lista) {
+
+        // Convertimos el nombre a minúsculas
+        const nombre = receta.nombre.toLowerCase();
+
+        // Comprobamos si el nombre contiene el texto
+        if (nombre.includes(buscado)) {
+
+            // Añadimos la receta al resultado
+            resultado.push(receta);
+        }
+    }
+
+    // Devolvemos las recetas encontradas
+    return resultado;
+}
