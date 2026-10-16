@@ -330,3 +330,47 @@ console.log("Eliminar receta 99:", eliminarPorId(recetas, 99));
 // Mostramos la lista después de añadir y eliminar
 console.log("--- Recetas después de los cambios ---");
 listar(recetas);
+
+
+// RETO 3: ESTADÍSTICAS DE LAS RECETAS
+
+function estadisticas(lista) {
+
+    // Comprobamos si la lista está vacía
+    if (lista.length === 0) {
+        console.warn("No hay recetas para calcular las estadísticas.");
+        return;
+    }
+
+    // Variables para guardar la suma y el tiempo máximo
+    let suma = 0;
+    let maximo = lista[0];
+
+    // Recorremos todas las recetas
+    for (const receta of lista) {
+
+        // Sumamos el tiempo de preparación
+        suma += receta.tiempo;
+
+        // Comprobamos si esta receta tarda más que la actual
+        if (receta.tiempo > maximo.tiempo) {
+            maximo = receta;
+        }
+    }
+
+    // Calculamos la media
+    const media = suma / lista.length;
+
+    // Mostramos los resultados
+    console.log("--- Estadísticas de las recetas ---");
+    console.log("Tiempo total:", suma, "minutos");
+    console.log("Tiempo medio:", media.toFixed(1), "minutos");
+    console.log("Receta que más tarda:", maximo.nombre);
+    console.log("Tiempo máximo:", maximo.tiempo, "minutos");
+}
+
+// Probamos la función con todas las recetas
+estadisticas(recetas);
+
+// Probamos qué ocurre si la lista está vacía
+estadisticas([]);
